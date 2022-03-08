@@ -1,43 +1,41 @@
 package com.example;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 
-public class LionTest extends TestCase {
+public class LionTest {
 
     @Mock
     Feline feline;
 
     @Test
-    public void testGetKittens() throws Exception {
+    public void getKittensLionTest() throws Exception {
         Feline feline = new Feline();
         Lion lion = new Lion("Самец", feline);
         int actual = lion.getKittens();
-        assertEquals(1, actual);
+        assertEquals("Метод GetKittens должен возвращать 1, в вызове без параметров", 1, actual);
     }
 
-    @Test(expected = Exception.class)
-    public void testDoesHaveManeException() throws Exception {
+    @Test
+    public void doesHaveManeLionException() {
         //для feline вызывается мок
         try {
             Lion lion = new Lion("неСамец", feline);
+        } catch (Exception exception) {
+            assertEquals("При создании класса Lion использовался не верный аргумент", "Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
         }
-        catch (Exception exception){
-            assertEquals(exception.getMessage(),"Используйте допустимые значения пола животного - самец или самка");
-        }
-
     }
-
 
     @Test
-    public void testGetFoodLionCorrectGood() throws Exception {
+    public void getFoodLionCorrectGoodTest() throws Exception {
         Feline feline = new Feline();
-        Lion lion = new Lion("Самец",feline);
-        Assert.assertEquals("Лев - хищник. И ему нужно разнообразное мясное питание!",lion.getFood(), List.of("Животные", "Птицы", "Рыба"));
+        Lion lion = new Lion("Самка", feline);
+        Assert.assertEquals("Лев - хищник. И ему нужно разнообразное мясное питание!", List.of("Животные", "Птицы", "Рыба"), lion.getFood());
     }
+
 }

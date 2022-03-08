@@ -5,23 +5,20 @@ import org.junit.Test;
 
 import java.util.List;
 
-
-
-public class CatTest{
-
+public class CatTest {
 
     @Test
-    public void testGetSoundCatMay() {
+    public void getSoundCatMayTest() {
         Feline feline = new Feline();
         Cat cat = new Cat(feline);
-        Assert.assertEquals("Звук который издает кошка должен быть Мяу",cat.getSound(),"Мяу");
+        Assert.assertEquals("Звук который издает кошка должен быть Мяу", "Мяу", cat.getSound());
     }
 
     @Test
-    public void testGetFoodCatCorrectGood() throws Exception {
+    public void getFoodCatCorrectGoodTest() throws Exception {
         Feline feline = new Feline();
         Cat cat = new Cat(feline);
-        Assert.assertEquals("Кошка - хищник. И ей нужно разнообразное мясное питание!",cat.getFood(),List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals("Кошка - хищник. И ей нужно разнообразное мясное питание!", List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
 
 }

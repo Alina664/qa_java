@@ -10,30 +10,30 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class DoesHaveManeLionTest {
 
-        private final String checkedText;
-        private final boolean expected;
+    @Mock
+    Feline feline;
 
-        public DoesHaveManeLionTest(String checkedText, boolean expected) {
-            this.checkedText = checkedText;
-            this.expected = expected;
-        }
+    private final String checkedText;
+    private final boolean expected;
 
-        @Mock
-        Feline feline;
+    public DoesHaveManeLionTest(String checkedText, boolean expected) {
+        this.checkedText = checkedText;
+        this.expected = expected;
+    }
 
-        @Parameterized.Parameters
-        public static Object[][] getTestData() {
-            return new Object[][]{
-                    {"Самец", true},
-                    {"Самка", false},
-            };
-        }
+    @Parameterized.Parameters
+    public static Object[][] getTestData() {
+        return new Object[][]{
+                {"Самец", true},
+                {"Самка", false},
+        };
+    }
 
-        @Test
-        public void testDoesHaveMane() throws Exception {
-            Lion lion = new Lion(checkedText,feline);
-            boolean actual = lion.doesHaveMane();
-            assertEquals(expected, actual);
-        }
+    @Test
+    public void doesHaveManLionTest() throws Exception {
+        Lion lion = new Lion(checkedText, feline);
+        boolean actual = lion.doesHaveMane();
+        assertEquals("При создании объекта Lion пареметр sex может быть либо 'Самец', или 'Самка'", expected, actual);
+    }
 
 }
